@@ -42,8 +42,6 @@ services:
                 TIMEZONE: ${TIMEZONE}
         volumes:
             - ../:/var/www/filmoteca:cached
-            - filmoteca_app_var:/var/www/filmoteca/var
-            - filmoteca_app_vendor:/var/www/filmoteca/vendor
         networks:
             - filmoteca_network
 
@@ -54,14 +52,14 @@ services:
             context: ./nginx
         volumes:
             - ../:/var/www/filmoteca:cached
-            - filmoteca_app_var:/var/www/filmoteca/var
-            - filmoteca_app_vendor:/var/www/filmoteca/vendor
         ports:
             - "80:80"
         networks:
             - filmoteca_network
         env_file:
             - .env.nginx
+        depends_on:
+            - php
 
     mailhog:
         image: mailhog/mailhog
@@ -73,8 +71,6 @@ services:
             - filmoteca_network
 
 volumes:
-    filmoteca_app_var:
-    filmoteca_app_vendor:
     filmoteca_db_data:
 
 networks:
