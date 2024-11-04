@@ -23,11 +23,7 @@ RUN apk update && apk add --no-cache \
     bash \
     nodejs \
     npm \
-    autoconf \
-    rabbitmq-c rabbitmq-c-dev && \
-    mkdir -p /usr/src/php/ext/amqp && \
-    curl -fsSL https://pecl.php.net/get/amqp | tar xvz -C "/usr/src/php/ext/amqp" --strip 1 && \
-    docker-php-ext-install amqp
+    autoconf
 
 RUN docker-php-ext-configure gd --with-jpeg --with-freetype
 
