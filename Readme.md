@@ -9,6 +9,7 @@
 | `genre`      | VARCHAR(100) | Genre du film                    |
 | `synopsis`   | TEXT         | Résumé du film                   |
 | `director`   | VARCHAR(255) | Nom du réalisateur               |
+| `deleted_at` | TIMESTAMP    | Date d'archivage dans la collection  |
 | `created_at` | TIMESTAMP    | Date d'ajout dans la collection  |
 
 - **Description** : Contient les informations de base sur chaque film, y compris le titre, l’année de sortie, le genre, un synopsis et le nom du réalisateur.
