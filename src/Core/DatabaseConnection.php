@@ -6,7 +6,7 @@ class DatabaseConnection
 {
     private static ?\PDO $connection = null;
 
-    private const DB_HOST = 'db';
+    private const DB_HOST = 'filmoteca_db'; // Name of the Docker container or the service id in the docker-compose.yml file
     private const DB_PORT = 3306;
     private const DB_NAME = 'filmoteca';
     private const DB_USER = 'filmoteca_user';
