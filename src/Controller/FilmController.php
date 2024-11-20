@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Entity\Film;
 use App\Repository\FilmRepository;
 
 class FilmController
@@ -13,12 +14,25 @@ class FilmController
         $filmRepository = new FilmRepository();
         $films = $filmRepository->findAll();
 
-        echo '<pre>';
-        var_dump($films);
-        echo '</pre>';die;
+        /* $filmEntities = [];
+        foreach ($films as $film) {
+            $filmEntity = new Film();
+            $filmEntity->setId($film['id']);
+            $filmEntity->setTitle($film['title']);
+            $filmEntity->setYear($film['year']);
+            $filmEntity->setType($film['type']);
+            $filmEntity->setSynopsis($film['synopsis']);
+            $filmEntity->setDirector($film['director']);
+            $filmEntity->setCreatedAt(new \DateTime($film['created_at']));
+            $filmEntity->setUpdatedAt(new \DateTime($film['updated_at']));
 
-        header('Content-Type: application/json');
-        echo json_encode($films);
+            $filmEntities[] = $filmEntity;
+        } */
+
+        dd($films);
+
+        // header('Content-Type: application/json');
+        // echo json_encode($films);
     }
 
     public function create()
