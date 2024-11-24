@@ -2,6 +2,15 @@
 
 Filmoteca est une application de gestion de films développée dans le cadre de la formation INF5. Ce projet suit l'architecture MVC et utilise Docker pour simplifier son déploiement.
 
+## Technologies utilisées
+
+![MySQL](https://img.shields.io/badge/MySQL-8.0-%2300f.svg?logo=mysql&logoColor=white)  
+![Adminer](https://img.shields.io/badge/Adminer-%231D85C8.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAh1JREFUaEPtmIExRFEQht/HyFRsAS7ABakAyYBsSJoAzYC6+AVsBlcSsQKwEKUoSsmklJK3K21puSdxt88OYzp84YPpt/ftj/9+/b2dnw8HCG0O+GsAG2ARpAFtA6ZK6iYNdCaCtILaI9AWMI9AbcEkUKtQJjUPapHDpBLbAJMXJ9ryGFqKnRKaIXoUrsARWYCDgWq1dCQFoAOawXnR5GmwxUrQ1FEIoBqEecNUpBVwCugMQlEZQBbwdUyhk0y3CLMEsgeDajjmvTJEqQjIkFOBPdRCAXgFvIG6URCoAW8AfwNbdcB5CbfBOkHKlEBpgasn8D5hlXBvqbHniwptJSGCPgN8M58Gzgh8VViKUEWA+s5aADeA54gfBI8HTAK7pDTATYDPgSeBBMGnZVyRYo+rk1hk0SHQEZwA9glvgZmFdQFRABPDYPAT3HVocwMBRyscALcp4pks+hwDS+IK8gfAgbF8HpFRIOw6IVaEDFCQ6ITaAP7lFRVv5FVFyxMVKHNSAxIqgdJI5HndBKbITIVVFrFAl4w3ww5QrpIhQCS4QLZGNOGCWFQpQD3wJ90S9WtUVDdRABItIpJrTpIyEGLyMRIV4BUtN3cFFwQRCDcAvILvAUvUUBO0eACe8CqxKs9kUsclqJeSt9GtFvMC41Us4E3gBeI8P4KrqCMI+z1TTLMtUoTRPsBhwEvwM8RD4BaIrgCxgJDf4LeBT4HQhUoEqNxjfoiZPIA9YqA3gJ6xrXvLYcylFgFtMiGbEIVTlkb0Fbg8LjEqTVykdmIHZCRUAAFsF8E9l7GArXkHaIAzIVyG5/BvsD9RGFOAJdjHeDr8m7PQpmMXDOD6gAeIMmEpgYJjJgC2X68Cf7Hy4s2OmgV/XO4Xh1FGxQKYrwAAAABJRU5ErkJggg==)  
+![PHP](https://img.shields.io/badge/PHP-8.0-%23777BB4.svg?logo=php&logoColor=white)  
+![Nginx](https://img.shields.io/badge/Nginx-%23009639.svg?logo=nginx&logoColor=white)  
+![Docker](https://img.shields.io/badge/Docker-Compose-%232496ED.svg?logo=docker&logoColor=white)  
+![Mailhog](https://img.shields.io/badge/Mailhog-%234E4E4E.svg?logoColor=white)  
+
 ## Prérequis  
 
 Avant de commencer, assurez-vous d'avoir les outils suivants installés sur votre machine :  
