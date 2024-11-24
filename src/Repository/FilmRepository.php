@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Repository;
 
 use App\Core\DatabaseConnection;
@@ -25,5 +27,16 @@ class FilmRepository
         $films = $stmt->fetchAll();
 
         return $this->entityMapperService->mapToEntities($films, Film::class);
+    }
+
+    public function find(int $id): Film
+    {
+        $query = 'SELECT * FROM film WHERE id = :id';
+        $stmt = $this->db->prepare($query);
+        $stmt->execute(['id' => $id]);
+
+        $film = $stmt->fetch();
+
+        return $this->entityMapperService->mapToEntity($film, Film::class);
     }
 }
