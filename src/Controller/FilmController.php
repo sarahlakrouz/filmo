@@ -4,11 +4,19 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Core\TemplateRenderer;
 use App\Entity\Film;
 use App\Repository\FilmRepository;
 
 class FilmController
 {
+    private TemplateRenderer $renderer;
+
+    public function __construct()
+    {
+        $this->renderer = new TemplateRenderer();
+    }
+
     public function list(array $queryParams)
     {
         $filmRepository = new FilmRepository();
@@ -29,7 +37,11 @@ class FilmController
             $filmEntities[] = $filmEntity;
         } */
 
-        dd($films);
+        //dd($films);
+
+        echo $this->renderer->render('film/list.html.twig', [
+            'films' => $films,
+        ]);
 
         // header('Content-Type: application/json');
         // echo json_encode($films);
