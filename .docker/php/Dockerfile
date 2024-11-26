@@ -44,8 +44,14 @@ RUN pecl install xdebug
 RUN docker-php-ext-enable xdebug
 RUN apk del -f .build-deps
 
+# Create xdebug log directory
+RUN mkdir -p /var/www/html/xdebug && chmod -R 777 /var/www/html/xdebug
+
 # Configure Xdebug
 RUN echo "xdebug.start_with_request=yes" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "display_errors=On" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "display_startup_errors=On" >> /usr/local/etc/php/conf.d/xdebug.ini \
+    && echo "html_errors=On" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.mode=debug" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.log=/var/www/html/xdebug/xdebug.log" >> /usr/local/etc/php/conf.d/xdebug.ini \
     && echo "xdebug.discover_client_host=1" >> /usr/local/etc/php/conf.d/xdebug.ini \
