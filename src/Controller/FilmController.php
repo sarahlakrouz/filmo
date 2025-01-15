@@ -74,42 +74,108 @@ class FilmController
             $filmRepository = new FilmRepository();
             $filmRepository->save($film);
     
-            // Redirection  vers la liste des films après l'ajout
+            // Redirection  
             header('Location: /film/list');
             exit();
         }
     
-        // Si ce n'est pas une requête POST, afficher le formulaire
+    
         echo $this->renderer->render('film/create.html.twig');
     }
     
+    
     public function read(array $queryParams)
     {
-        $filmRepository = new FilmRepository();
-        $film = $filmRepository->find((int) $queryParams['id']);
+       
+        if (!isset($queryParams['id'])) {
+            die('ID du film manquant.');
+        }
+    
+        $filmId = (int)$queryParams['id'];
+    
+       
+        $filmRepository = new \App\Repository\FilmRepository();
+        $film = $filmRepository->find($filmId);
+    
+        if (!$film) {
+            die('Film introuvable.');
+        }
+    
+      
+        echo $this->renderer->render('film/read.html.twig', [
+            'film' => $film,
+        ]);
 
-        dd($film);
+        
     }
 
-    public function update()
-    {
-        echo "Mise à jour d'un film";
-    }
 
-    public function delete(array $queryParams)
+    public function update(array $queryParams)
 {
-    // Vérifiez que l'ID est fourni
+    // Vérifier que l'ID du film est présent
     if (!isset($queryParams['id'])) {
         die('ID du film manquant.');
     }
 
     $filmId = (int)$queryParams['id'];
 
-    // Supprimez le film via le FilmRepository
+    // Récupérer les informations du film depuis la base de données
+    $filmRepository = new FilmRepository();
+    $film = $filmRepository->find($filmId);
+
+    // Si le film n'existe pas afficher une erreur 
+    if (!$film) {
+        die('Film introuvable.');
+    }
+
+   
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        // Récupérer les données du formulaire
+        $title = $_POST['title'] ?? '';
+        $year = $_POST['year'] ?? '';
+        $type = $_POST['type'] ?? '';
+        $director = $_POST['director'] ?? '';
+        $synopsis = $_POST['synopsis'] ?? '';
+
+        // Mettre à jour l'objet Film avec les nouvelles données
+        $film->setTitle($title);
+        $film->setYear($year);
+        $film->setType($type);
+        $film->setDirector($director);
+        $film->setSynopsis($synopsis);
+
+        
+        $film->setUpdatedAt(new \DateTime());
+
+        
+        $filmRepository->save($film);
+
+        
+        header('Location: /film/list');
+        exit();
+    }
+
+    // Afficher le formulaire de mise à jour avec les données pré-remplies
+    echo $this->renderer->render('film/update.html.twig', [
+        'film' => $film,
+    ]);
+}
+
+
+    public function delete(array $queryParams)
+{
+    
+    if (!isset($queryParams['id'])) {
+        die('ID du film manquant.');
+    }
+
+    $filmId = (int)$queryParams['id'];
+
+    
     $filmRepository = new \App\Repository\FilmRepository();
     $filmRepository->delete($filmId);
 
-    // Redirigez vers la liste des films
+   
     header('Location: /film/list');
     exit;
 }

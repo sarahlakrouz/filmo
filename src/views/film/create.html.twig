@@ -4,15 +4,19 @@
 
 {% block content %}
     <div class="container my-5">
-        <h2 class="mb-4 text-primary">
-            <i class="fas fa-plus me-2" aria-hidden="true"></i> Ajouter un nouveau film
-        </h2>
+        <div class="text-center mb-5">
+           <h2 class="text-dark">
+    <i class="fas fa-plus-circle me-2 text-dark" aria-hidden="true"></i> Ajouter un nouveau film
+</h2>
 
-        <form action="/film/create" method="POST" class="needs-validation" novalidate>
-            <div class="row g-3">
+            <p class="text-muted">Remplissez les informations ci-dessous pour ajouter un film à la collection.</p>
+        </div>
+
+        <form action="/film/create" method="POST" class="p-4 border rounded shadow-sm bg-light needs-validation" novalidate>
+            <div class="row g-4">
                 <div class="col-md-6">
                     <label for="title" class="form-label">Titre</label>
-                    <input type="text" class="form-control" id="title" name="title" required>
+                    <input type="text" class="form-control" id="title" name="title" placeholder="Ex. Inception" required>
                     <div class="invalid-feedback">
                         Veuillez entrer un titre.
                     </div>
@@ -20,7 +24,7 @@
 
                 <div class="col-md-6">
                     <label for="year" class="form-label">Année</label>
-                    <input type="number" class="form-control" id="year" name="year" required>
+                    <input type="number" class="form-control" id="year" name="year" placeholder="Ex. 2010" required>
                     <div class="invalid-feedback">
                         Veuillez entrer une année valide.
                     </div>
@@ -28,30 +32,39 @@
 
                 <div class="col-md-6">
                     <label for="type" class="form-label">Type</label>
-                    <input type="text" class="form-control" id="type" name="type" required>
+                    <select class="form-select" id="type" name="type" required>
+                        <option value="" selected disabled>Choisissez...</option>
+                        <option value="Action">Action</option>
+                        <option value="Comédie">Comédie</option>
+                        <option value="Drame">Drame</option>
+                        <option value="Science-fiction">Science-fiction</option>
+                        <option value="Horreur">Horreur</option>
+                    </select>
                     <div class="invalid-feedback">
-                        Veuillez entrer un type.
+                        Veuillez sélectionner un type.
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <label for="director" class="form-label">Réalisateur</label>
-                    <input type="text" class="form-control" id="director" name="director" required>
+                    <input type="text" class="form-control" id="director" name="director" placeholder="Ex. Christopher Nolan" required>
                     <div class="invalid-feedback">
                         Veuillez entrer le nom du réalisateur.
                     </div>
                 </div>
             </div>
 
-            <div class="mb-3 mt-4">
+            <div class="mb-4 mt-4">
                 <label for="synopsis" class="form-label">Synopsis</label>
-                <textarea class="form-control" id="synopsis" name="synopsis" rows="4" required></textarea>
+                <textarea class="form-control" id="synopsis" name="synopsis" rows="4" placeholder="Résumé du film" required></textarea>
                 <div class="invalid-feedback">
                     Veuillez entrer un synopsis.
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary btn-lg w-100">Ajouter le film</button>
+            <button type="submit" class="btn btn-success btn-lg w-100">
+                <i class="fas fa-check-circle me-2"></i> Ajouter le film
+            </button>
         </form>
     </div>
 {% endblock %}
