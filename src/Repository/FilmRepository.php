@@ -20,6 +20,22 @@ class FilmRepository
         // Initialise le service de mappage des entités
         $this->entityMapperService = new EntityMapper();
     }
+    public function save(Film $film): void
+{
+    $query = 'INSERT INTO film (title, year, type, director, synopsis, created_at, updated_at) 
+              VALUES (:title, :year, :type, :director, :synopsis, :createdAt, :updatedAt)';
+    $stmt = $this->db->prepare($query);
+
+    $stmt->execute([
+        'title' => $film->getTitle(),
+        'year' => $film->getYear(),
+        'type' => $film->getType(),
+        'director' => $film->getDirector(),
+        'synopsis' => $film->getSynopsis(),
+        'createdAt' => $film->getCreatedAt()->format('Y-m-d H:i:s'),
+        'updatedAt' => $film->getUpdatedAt()->format('Y-m-d H:i:s'),
+    ]);
+}
 
     // Méthode pour récupérer tous les films de la base de données
     public function findAll(): array
@@ -52,4 +68,12 @@ class FilmRepository
         // Utilise le service de mappage pour convertir le résultat en objet Film
         return $this->entityMapperService->mapToEntity($film, Film::class);
     }
+
+
+    public function delete(int $id): void
+{
+    $query = 'DELETE FROM film WHERE id = :id';
+    $stmt = $this->db->prepare($query);
+    $stmt->execute(['id' => $id]);
+}
 }

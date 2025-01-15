@@ -21,6 +21,7 @@
                     <th>Synopsis</th>
                     <th>Ajouté le</th>
                     <th>Modifié le</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
 
@@ -35,6 +36,14 @@
                         <td>{{ film.synopsis }}</td>
                         <td>{{ film.createdAt.format('d/m/Y H:i') }}</td>
                         <td>{{ film.updatedAt.format('d/m/Y H:i') }}</td>
+                        <td>
+                            <!-- Bouton de suppression avec confirmation -->
+                            <form action="/film/delete?id={{ film.id }}" method="POST" style="display:inline;">
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce film ?');">
+                                    Supprimer
+                                </button>
+                            </form>
+                        </td>
                     </tr>
                 {% endfor %}
             </tbody>
